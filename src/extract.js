@@ -14,15 +14,12 @@ const instance = axios.create({
 
 async function makeFile() {
   try {
-    const response = await instance.get(
-      "https://10.1.33.80/report-khorasan-razavi",
-      {
-        auth: {
-          username: "khorasan-razavi",
-          password: "iMaif3uh4PaeBohg",
-        },
-      }
-    );
+    const response = await instance.get("https://urli", {
+      auth: {
+        username: "user",
+        password: "pass",
+      },
+    });
     const $ = cheerio.load(response.data);
     const list = $("a").text().split("daily");
     console.log("Making CSV File...");
@@ -45,15 +42,12 @@ async function makeFile() {
 
 async function process(path) {
   try {
-    const response = await instance.get(
-      "https://10.1.33.80/report-khorasan-razavi/daily" + path,
-      {
-        auth: {
-          username: "khorasan-razavi",
-          password: "iMaif3uh4PaeBohg",
-        },
-      }
-    );
+    const response = await instance.get("https://urlly" + path, {
+      auth: {
+        username: "user",
+        password: "pass",
+      },
+    });
     feedFile(response.data, path);
   } catch (error) {
     console.error(error);
